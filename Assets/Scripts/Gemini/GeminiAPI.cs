@@ -7,10 +7,9 @@ using UnityEngine.Networking;
 public class GeminiAPI : MonoBehaviour
 {
     [Header("Gemini Settings")]
-    //[SerializeField] private string apiKey = "YOUR_GEMINI_API_KEY"; // Replace this
 
     public GeminiConfig config;
-    
+    private GoogleCloudTTS tts;
     private static GeminiAPI _instance;
 
     private void Awake()
@@ -24,6 +23,7 @@ public class GeminiAPI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        tts = FindFirstObjectByType<GoogleCloudTTS>();
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class GeminiAPI : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 string json = request.downloadHandler.text;
-                Debug.Log("[GeminiAPI] Raw response:\n" + json);
+                
 
                 GeminiResponse response = JsonUtility.FromJson<GeminiResponse>(json);
                 if (response != null &&
@@ -80,7 +80,8 @@ public class GeminiAPI : MonoBehaviour
                     response.candidates[0].content.parts.Length > 0)
                 {
                     string reply = response.candidates[0].content.parts[0].text;
-                    Debug.Log("[GeminiAPI] Gemini Reply: " + reply);
+                    Debug.Log("🤖 Gemini replied:  " + reply);
+                    tts.Speak(reply);
                     onReplyReceived?.Invoke(reply);
                 }
                 else
@@ -97,10 +98,17 @@ public class GeminiAPI : MonoBehaviour
         }
     }
 
-    private string EscapeJson(string str)
+    public static string EscapeJson(string str)
     {
+        if (string.IsNullOrEmpty(str))
+        {
+            Debug.LogWarning("EscapeJson received a null or empty string.");
+            return "";
+        }
+
         return str.Replace("\\", "\\\\").Replace("\"", "\\\"");
     }
+
 
     // Response classes
     [Serializable]

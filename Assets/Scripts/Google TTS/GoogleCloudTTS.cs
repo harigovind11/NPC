@@ -202,4 +202,9 @@ public class GoogleCloudTTS : MonoBehaviour
     string Base64UrlEncode(string input) => Base64UrlEncode(Encoding.UTF8.GetBytes(input));
     string Base64UrlEncode(byte[] input) =>
         Convert.ToBase64String(input).Replace("+", "-").Replace("/", "_").Replace("=", "");
+    
+    
+    
+ 
+
 }
