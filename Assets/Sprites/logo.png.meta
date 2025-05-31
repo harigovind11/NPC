@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 02c2394f8c8e14a4ca146385bad5228d
+guid: 7f00bc119c54ca1419ddf565a5be0836
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mic_0
+      name: logo_0
       rect:
         serializedVersion: 2
-        x: 90
-        y: 26
-        width: 332
-        height: 460
+        x: 36
+        y: 30
+        width: 158
+        height: 162
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da015e9250151244b8d21db3fb11352a
-      internalID: -311587756
+      spriteID: 072b4077757568a4faba1ec71cc3f4b7
+      internalID: -1198534075
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8541bcb43b541ab4caf496ead6d28256
+    spriteID: b88eff58d2e79614380d0cb5b3276470
     internalID: 0
     vertices: []
     indices: 
@@ -145,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mic_0: -311587756
+      logo_0: -1198534075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
