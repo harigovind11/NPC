@@ -15,8 +15,7 @@ public class GoogleCloudSTT : MonoBehaviour
     private string accessToken;
     private GoogleCredential credentials;
    
-    public bool isTTSPlaying = false;
-    
+
     [Serializable]
     private class GoogleCredential
     {
@@ -46,11 +45,11 @@ public class GoogleCloudSTT : MonoBehaviour
         }
 
         Debug.Log("🎙️ Recording...");
-        recordedClip = Microphone.Start(null, false, 300, 16000); // up to 5 min
+        recordedClip = Microphone.Start(null, false, recordDuration, 16000);
+        Invoke(nameof(StopRecording), recordDuration);
     }
 
-
-    public void StopRecording()
+    void StopRecording()
     {
         if (recordedClip == null)
         {
@@ -65,21 +64,6 @@ public class GoogleCloudSTT : MonoBehaviour
         byte[] audioBytes = ConvertToPCM(samples);
 
         StartCoroutine(SendToGoogleSTT(audioBytes));
-    }
-    
-  
-  
-
-    public void StopTTS()
-    {
-        // Add your TTS stop logic here (e.g., audioSource.Stop();)
-        isTTSPlaying = false;
-        Debug.Log("🛑 TTS stopped.");
-    }
-
-    public bool IsTTSPlaying()
-    {
-        return isTTSPlaying;
     }
 
     byte[] ConvertToPCM(float[] samples)
